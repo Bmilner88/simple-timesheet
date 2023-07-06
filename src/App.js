@@ -1,14 +1,27 @@
-import CalendarComp from "./components/CalendarComp";
+import React, { useState } from "react";
+import Calendar from "react-calendar";
 
-import "./App.css";
+
 import "react-calendar/dist/Calendar.css";
+import "./App.css";
 
-function App() {
+export default function App() {
+  const [date, setDate] = useState(new Date());
+
+  const onDateChange = (newDate) => {
+    setDate(newDate);
+    console.log(newDate);
+  };
+
   return (
     <div className="App">
-      <CalendarComp />
+      <Calendar
+        onChange={onDateChange}
+        value={date}
+        showNeighboringMonth={false}
+        locale={"en-US"}
+        selectRange={true}
+      />
     </div>
   );
 }
-
-export default App;
